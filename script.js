@@ -560,25 +560,34 @@
       return { src: img.getAttribute("src"), alt: img.getAttribute("alt") };
     });
 
+    console.log(items)
+
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightboxImg");
     const closeBtn = document.getElementById("lightboxClose");
     const prevBtn = document.getElementById("lightboxPrev");
     const nextBtn = document.getElementById("lightboxNext");
 
-    items.forEach(function (img, idx) {
-      img.closest(".gallery-item").addEventListener("click", function () {
-        openLightbox(idx);
-      });
-    });
+    // DIDN'T DO ANYHTING:
+    // items.forEach(function (img, idx) {
+    //   img.closest(".gallery-item").addEventListener("click", function () {
+    //     openLightbox(idx);
+    //     console.log("does it work at the start?")
+    //   });
+    // });
 
     function openLightbox(idx) {
       currentLightboxIndex = idx;
-      updateLightboxImage();
       lightbox.hidden = false;
+      updateLightboxImage();
     }
+
+    // Fixed blank image at opening
+    openLightbox(0)
+
     function updateLightboxImage() {
       const data = galleryImages[currentLightboxIndex];
+      console.log(data)
       lightboxImg.src = data.src;
       lightboxImg.alt = data.alt || "";
     }
